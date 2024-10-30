@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CoffeeShop - The best place to enjoy coffee with friends. Experience the finest coffee blends and shop for premium beans and merchandise.">
+    <meta name="keywords" content="coffee, cafe, espresso, cappuccino, latte, beans, coffee shop">
+    <title>CoffeeShop - Finest Blends & Brews</title>
+
+    <!-- Latest Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #563838;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 20px;
+            font-size: 1.1rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d3a15f;
+        }
+
+        .hero {
+            background-image: url('/coffee-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            z-index: 2;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            z-index: 2;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .btn-order {
+            background-color: #d3a15f;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .btn-order:hover {
+            background-color: #c18d4f;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 60px 0;
+            font-size: 2.5rem;
+            color: #563838;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-section .menu-item {
+            margin-bottom: 40px;
+        }
+
+        .menu-item img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-item h5 {
+            margin: 20px 0 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            font-size: 1.1rem;
+        }
+
+        .about p {
+            text-align: center;
+            margin: 30px auto;
+            font-size: 1.2rem;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .shop-section .menu-item h5 {
+            font-size: 1.4rem;
+        }
+
+        footer {
+            background-color: #563838;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer .social-links a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: #d3a15f;
+        }
+
+        footer .social-links a:hover {
+            color: #fff;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input {
+            border-radius: 30px;
+            border: none;
+            padding: 10px 20px;
+            width: 300px;
+        }
+
+        .newsletter-button {
+            border-radius: 30px;
+            background-color: #d3a15f;
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            margin-left: -50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button:hover {
+            background-color: #c18d4f;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">CoffeeShop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cart"><span class="badge text-bg-danger" th:text="${cartQty}" ></span> Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-order" href="/signup">Signup</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="container">
+        <h1>Welcome to CoffeeShop</h1>
+        <p>Finest Blends & Brews. Made Just for You.</p>
+        <a href="/signup" class="btn btn-order">Order Now</a>
+    </div>
+</section>
+
+<!-- Menu Section -->
+<section class="menu-section mt-5" id="menu">
+    <div class="container">
+        <h2 class="section-title">Our Menu</h2>
+        <div class="row">
+            <div class="col-md-4 menu-item">
+                <img class="card-img-top" src="coffee1.jpg" alt="Espresso">
+                <h5>Espresso</h5>
+                <p>3.00 CAD</p>
+                <form action="/add" method="post">
+                    <input type="hidden" name="item" value="Espresso">
+                    <input type="hidden" name="image" value="coffee1.jpg">
+                    <input type="hidden" name="price" value="3.00">
+                    <button class="common-theme-button btn btn-primary" type="submit">Add to Cart</button>
+                </form>
+            </div>
+
+            <div class="col-md-4 menu-item">
+                <img class="card-img-top" src="coffee2.jpg" alt="Cappuccino">
+                <h5>Cappuccino</h5>
+                <p>4.00 CAD</p>
+                <form action="/add" method="post">
+                    <input type="hidden" name="item" value="Cappuccino">
+                    <input type="hidden" name="image" value="coffee2.jpg">
+                    <input type="hidden" name="price" value="4.00">
+                    <button class="common-theme-button btn btn-primary" type="submit">Add to Cart</button>
+                </form>
+            </div>
+
+            <div class="col-md-4 menu-item">
+                <img class="card-img-top" src="coffee3.jpg" alt="Latte">
+                <h5>Latte</h5>
+                <p>4.50 CAD</p>
+                <form action="/add" method="post">
+                    <input type="hidden" name="item" value="Latte">
+                    <input type="hidden" name="image" value="coffee3.jpg">
+                    <input type="hidden" name="price" value="4.50">
+                    <button class="common-theme-button btn btn-primary" type="submit">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <section id="coffee-products" class="menu-section mt-5">
+                    <div class="row">
+                        <div class="col-md-4" th:each="product : ${products}">
+                            <div class="menu-item">
+                                <img th:src="@{'/' + ${product.image}}" alt="Coffee Image" class="img-fluid">
+                                <h5 th:text="${product.productName}"></h5>
+                                <p th:text="${product.description}"></p>
+                                <span class="price" th:text="'$' + ${product.price}"></span>
+                                <form action="/add" method="post">
+                                    <input type="hidden" name="item" th:value="${product.productName}">
+                                    <input type="hidden" name="image" th:value="@{'/' + ${product.image}}">
+                                    <input type="hidden" name="price" th:value="${product.price}">
+                                    <button class="common-theme-button btn btn-primary" type="submit">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+
+
+<!-- About Section -->
+<section class="about py-5 bg-light" id="about">
+    <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <p>CoffeeShop is a premium coffee destination, where every cup is crafted with passion and served with love. We believe in sourcing the finest beans from around the world, ensuring each sip is rich, flavorful, and memorable. Visit us for the best coffee experience, or order online for a quick and satisfying pick-me-up.</p>
+    </div>
+</section>
+
+<!-- Shop Section -->
+<section class="shop-section mt-5" id="shop">
+    <div class="container">
+        <h2 class="section-title">Shop</h2>
+        <div class="row">
+            <div class="col-md-4 menu-item">
+                <img src="mug.jpg" alt="Coffee Mug">
+                <h5>Coffee Mug</h5>
+                <p>$10.00</p>
+            </div>
+            <div class="col-md-4 menu-item">
+                <img src="beans.jpg" alt="Coffee Beans">
+                <h5>Coffee Beans</h5>
+                <p>$15.00</p>
+            </div>
+            <div class="col-md-4 menu-item">
+                <img src="tshirt.jpg" alt="CoffeeShop T-Shirt">
+                <h5>CoffeeShop T-Shirt</h5>
+                <p>$20.00</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-area mt-5">
+    <div class="container">
+        <h5>Stay Connected</h5>
+        <form class="d-flex justify-content-center mt-4">
+            <input type="email" class="newsletter-input" placeholder="Enter your email">
+            <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+        <div class="social-links mt-4">
+            <a href="#" class="fab fa-facebook-f">Facebook</a>
+            <a href="#" class="fab fa-instagram">Instagram</a>
+            <a href="#" class="fab fa-twitter">Twitter</a>
+        </div>
+        <p>&copy; 2024 CoffeeShop. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
